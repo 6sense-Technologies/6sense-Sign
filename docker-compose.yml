@@ -15,7 +15,7 @@ services:
     volumes:
       - opensign-files:/usr/src/app/files
     networks:
-      - appnet
+      - 6sensehq-network
 
   6sense-sign-client:
     image: opensign/opensign:main
