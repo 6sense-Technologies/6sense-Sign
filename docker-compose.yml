@@ -28,13 +28,14 @@ services:
     ports:
       - "4013:3000"        # UI exposed for Nginx
     depends_on:
-      - server
+      - 6sense-sign-server
     networks:
-      - appnet
+      - 6sensehq-network
 
 networks:
-  appnet:
-    driver: bridge
+  6sensehq_net:
+    external: true
+    name: 6sensehq-network
 
 volumes:
   opensign-files:
