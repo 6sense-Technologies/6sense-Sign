@@ -8,7 +8,6 @@ services:
     env_file: .env.prod
     environment:
       NODE_ENV: production
-      SERVER_URL: "http://6sense-sign-server:8080/app"
       PUBLIC_URL: "${PUBLIC_URL}"
     ports:
       - "4014:8080"        # API exposed for Nginx
