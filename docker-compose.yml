@@ -15,7 +15,7 @@ services:
     volumes:
       - opensign-files:/usr/src/app/files
     networks:
-      - 6sensehq-network
+      - 6sensehq_net
 
   6sense-sign-client:
     image: opensign/opensign:main
@@ -30,7 +30,7 @@ services:
     depends_on:
       - 6sense-sign-server
     networks:
-      - 6sensehq-network
+      - 6sensehq_net
 
 networks:
   6sensehq_net:
