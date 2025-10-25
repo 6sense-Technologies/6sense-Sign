@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  6sense-sign-server:
+    image: opensign/opensignserver:main
+    container_name: 6sense-sign-server
+    restart: unless-stopped
+    env_file: .env.prod
+    environment:
+      NODE_ENV: production
+      SERVER_URL: "http://server:8080/app"
+      PUBLIC_URL: "${PUBLIC_URL}"
+    ports:
+      - "4014:8080"        # API exposed for Nginx
+    volumes:
+      - opensign-files:/usr/src/app/files
+    networks:
+      - appnet
+
+  6sense-sign-client:
+    image: opensign/opensign:main
+    container_name: 6sense-sign-client
+    restart: unless-stopped
+    env_file: .env.prod
+    environment:
+      NODE_ENV: production
+      PUBLIC_URL: "${PUBLIC_URL}"
+    ports:
+      - "4013:3000"        # UI exposed for Nginx
+    depends_on:
+      - server
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
+
+volumes:
+  opensign-files:
